@@ -1,0 +1,4 @@
+name: dartGallery
+dependencies:
+  request:
+    git: 'git://github.com/JeremieT/request.git'
