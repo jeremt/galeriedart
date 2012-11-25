@@ -2,6 +2,7 @@
 library photo;
 
 import 'dart:html';
+import 'dart:math';
 
 class Photo {
 
@@ -16,6 +17,8 @@ class Photo {
 
     el = new DivElement();
     el.classes.add('photo');
+    int rot = new Random().nextInt(6) - 3;
+    el.style.transform = "rotate(${rot}deg)";
 
     // add image
     ImageElement img = new ImageElement();
