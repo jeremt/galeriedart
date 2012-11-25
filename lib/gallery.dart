@@ -4,6 +4,10 @@ library gallery;
 import 'dart:html';
 import 'photo.dart';
 
+/**
+ * Create a gallery from facebook image data.
+ */
+
 class Gallery {
 
   List _photos = [];
@@ -12,6 +16,23 @@ class Gallery {
   Gallery(String selector, Map data) {
     _photos = _parse(data);
     el = query(selector);
+    el.text = '';
+  }
+
+  /**
+   * Limit string size.
+   */
+
+  String _limit(String str, int limit) {
+    List words = str.split(' ');
+    int len = 0;
+
+    for (int i = 0 ; i < words.length ; i++) {
+      if (len >= limit)
+        return "${str.substring(0, len - 1)}...";
+      len += words[i].length + 1;
+    }
+    return str;
   }
 
   /**
@@ -23,10 +44,9 @@ class Gallery {
 
     json['data'].forEach((Map album) {
       res.add({
-        'name': album['name'],
-        'src': album['images'][0]['source'],
-        'width': album['images'][0]['width'],
-        'height': album['images'][0]['height'],
+        'content': album['name'],
+        'summary': _limit(album['name'], 100),
+        'src': album['source'],
         'likes': album['likes'] != null ? album['likes']['data'].length : 0
       });
     });
