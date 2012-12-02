@@ -1,0 +1,7 @@
+.photo {
+  background: white;
+  padding: 20px;
+  margin-bottom: 30px;
+  box-shadow: 0 1px 10px rgba(0, 0, 0, .2);
+  float: left;
+}
